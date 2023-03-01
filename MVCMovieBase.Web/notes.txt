@@ -1,0 +1,91 @@
+﻿*** Add migrations ***
+dotnet-ef --startup-project MVCMovieBase.Web/MVCMovieBase.Web.csproj migrations add InitialModel -p MVCMovieBase.AuthDb/MVCMovieBase.AuthDb.csproj --verbose
+dotnet-ef --startup-project MVCMovieBase.Web/MVCMovieBase.Web.csproj migrations add InitialMovieDbModel -p MVCMovieBase.Infrasctructure/MVCMovieBase.Infrasctructure.csproj --context MovieDbContext
+
+*** UPDATE DATABASE ***
+dotnet-ef database update --startup-project MVCMovieBase.Web/MVCMovieBase.Web.csproj --project MVCMovieBase.AuthDb/MVCMovieBase.AuthDb.csproj --context AuthDbContext
+dotnet-ef database update --startup-project MVCMovieBase.Web/MVCMovieBase.Web.csproj --project MVCMovieBase.Infrasctructure/MVCMovieBase.Infrasctructure.csproj --context MovieDbContext
+
+//@Html.ActionLink("Delete movie", "DeleteMovie", "Movie", new { id = item.Id } )
+//<a href="/Movie/DeleteMovie/1">Delete movie</a>
+
+
+globaladmin@moviebase.com
+adminRtyFgh@Aa1
+
+alice@alice.com
+polska@Aa1
+
+a) interfejs użytkownika wykorzystujący zróżnicowane kontrolki
+b) obsługę zdarzeń - min. 50 linijek kodu (nie licząc klamerek, 
+deklaracji, itp.)
+c) walidację - zarówno jako obsługę błędów i kontrolki
+d) wykorzystanie bazy danych
+e) zastosowane: sesje
+f) mechanizm uwierzytelniania
+g) mechanizm MasterPage
+
+
+f) mechanizm uwierzytelniania
+- uzyc kont lokalnych (prowadzacy nic nie wspominal o potwierdzaniu kont emailem, wiec uzyjemy development mode)
+- użyć [Authorize] i [AllowAnonymous]
+
+e) zastosowane: sesje
+1. W aplikacji MVC dla zarządzania danymi filmów dla akcji dodania nowego filmu zastosuj sesje dla zapamiętania
+jaki film został dodany.
+2. Strona z listą filmów ma pobierać z sesji i wypisywać, jaki ostatnio film dodano przed listą filmów.
+
+
+
+{
+	"Id": 1,
+	"Title": "Fast and furious",
+	"Director": "Steven Spielberg",
+	"Genre": "Drama",
+	"Year": 1960,
+	"Country": "USA",
+	"ScoreAverage": 5,
+	"ScoreVotesCount": 2000
+}
+
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "integer"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Director": {
+      "type": "string"
+    },
+    "Genre": {
+      "type": "string"
+    },
+    "Year": {
+      "type": "integer"
+    },
+    "Country": {
+      "type": "string"
+    },
+    "ScoreAverage": {
+      "type": "integer"
+    },
+    "ScoureCont": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "Id",
+    "Title",
+    "Director",
+    "Genre",
+    "Year",
+    "Country",
+    "ScoreAverage",
+    "ScoureCont"
+  ]
+}
